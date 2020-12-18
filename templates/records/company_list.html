@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+{% for company in company_list  %}
+
+        <li>{{ company.company }}</li>
+        <li>{{ company.segment }}</li>
+
+        <li>{{ company.country }}</li>
+        <a href="{% url 'company details' company.pk  %}">Details</a>
+{% endfor %}
+</ul>
+<a href="{% url 'company create' %}">Add Company</a>
+</body>
+</html>

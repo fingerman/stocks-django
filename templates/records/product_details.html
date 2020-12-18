@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Details</title>
+</head>
+<body>
+{{ company.company }}
+{{ company.address }}
+{{ company.segment }}
+{{ company.country }}
+{{ company.email }}
+{{ company.description }}
+
+<div>
+    <a href="{% url 'product edit' company.pk  %}">Edit</a>
+    <a href="{% url 'product delete' company.pk  %}">Delete</a>
+    <a href="{% url 'product list' %}">Back
+</div>
+{#build "Back to List#}
+
+</body>
+</html>

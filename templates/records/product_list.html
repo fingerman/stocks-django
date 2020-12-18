@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+{% for product in product_list  %}
+
+        <li>{{ product.title }}</li>
+        <li>{{ product.price }}</li>
+        <li>{{ product.company }}</li>
+
+
+        <a href="{% url 'product details' product.pk  %}">Details</a>
+{% endfor %}
+</ul>
+<a href="{% url 'product create' %}">Add</a>
+</body>
+</html>
