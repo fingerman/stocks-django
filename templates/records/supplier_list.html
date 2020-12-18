@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+{% for supplier in supplier_list  %}
+
+        <li>{{ supplier.name }}</li>
+        <li>{{ supplier.address }}</li>
+
+
+
+        <a href="{% url 'supplier details' supplier.pk  %}">Details</a>
+{% endfor %}
+</ul>
+<a href="{% url 'supplier create' %}">Add</a>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Details</title>
+</head>
+<body>
+{{ supplier.name }}
+{{ supplier.address }}
+{{ supplier.email }}
+{{ supplier.products }}
+
+
+<div>
+    <a href="{% url 'supplier edit' supplier.pk  %}">Edit</a>
+    <a href="{% url 'supplier delete' supplier.pk  %}">Delete</a>
+    <a href="{% url 'supplier list' %}">Back
+</div>
+
+</body>
+</html>
