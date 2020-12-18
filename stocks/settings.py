@@ -14,6 +14,8 @@ from pathlib import Path
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+from django.urls import reverse_lazy
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -35,6 +37,7 @@ INSTALLED_APPS = [
     'stocks.records',
     'django_countries',
     'djmoney',
+    'stocks.authentication',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -131,3 +134,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     join(BASE_DIR, 'static'),
 )
+
+LOGIN_REDIRECT_URL = reverse_lazy('index')
+
+LOGIN_URL = reverse_lazy('sign in')

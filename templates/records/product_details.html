@@ -10,12 +10,12 @@
 {{ product.company }}
 {{ product.description }}
 
-
+{% if user.is_authenticated %}
 <div>
     <a href="{% url 'product edit' product.pk  %}">Edit</a>
     <a href="{% url 'product delete' product.pk  %}">Delete</a>
     <a href="{% url 'product list' %}">Back
 </div>
-
+{% endif %}
 </body>
 </html>
