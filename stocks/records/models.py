@@ -15,6 +15,9 @@ class Company(models.Model):
     description = models.TextField()
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f'{self.company}'
+
 
 class Product(models.Model):
     title = models.CharField(max_length=50)
@@ -22,6 +25,9 @@ class Product(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     description = models.TextField(default="Description")
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.title}'
 
 
 class Supplier(models.Model):
