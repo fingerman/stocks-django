@@ -1,21 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<ul>
-{% for supplier in supplier_list  %}
-
-        <li>{{ supplier.name }}</li>
-        <li>{{ supplier.address }}</li>
+{% extends 'base.html' %}
+{% block content %}
 
 
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-4">
 
-        <a href="{% url 'supplier details' supplier.pk  %}">Details</a>
-{% endfor %}
-</ul>
-<a href="{% url 'supplier create' %}">Add</a>
-</body>
-</html>
+                <div class="container">
+
+                    <legend>Suppliers list</legend>
+                    <br>
+
+                    <table class="table table-hover align-center">
+                        <thead>
+                        <tr>
+                            <th>Supplier</th>
+                            <th>Address</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for supplier in supplier_list %}
+                            <tr>
+                                <td>{{ supplier.name }}</td>
+                                <td>{{ supplier.address }}</td>
+                                <td>
+                                    {% if user.is_authenticated %}
+                                        <a href="{% url 'supplier details' supplier.pk %}" type="button" class="btn btn-info" aria-label="Center Align">
+                                            Details
+                                        </a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                    {% if user.is_authenticated %}
+                        <a class="btn btn-primary" href="{% url 'supplier create' %}">Add</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

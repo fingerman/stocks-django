@@ -1,21 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<div>Logged as: {{ user }}</div>
-<ul>
-{% for company in company_list  %}
+{% extends 'base.html' %}
+{% block content %}
 
-        <li>{{ company.company }}</li>
-        <li>{{ company.segment }}</li>
 
-        <li>{{ company.country }}</li>
-        <a href="{% url 'company details' company.pk  %}">Details</a>
-{% endfor %}
-</ul>
-<a href="{% url 'company create' %}">Add Company</a>
-</body>
-</html>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-4">
+
+                <div class="container">
+
+                    <legend>Companies list</legend>
+                    <br>
+
+                    <table class="table table-hover align-center">
+                        <thead>
+                        <tr>
+                            <th>Company</th>
+                            <th>Segment</th>
+                            <th>Country</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for company in company_list %}
+                            <tr>
+                                <td>{{ company.company }}</td>
+                                <td>{{ company.segment }}</td>
+                                <td>{{ company.country }}</td>
+                                <td>
+                                    {% if user.is_authenticated %}
+                                        <a href="{% url 'company details' company.pk %}" type="button"
+                                           class="btn btn-info"
+                                           aria-label="Center Align">
+                                            Details
+                                        </a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                    {% if user.is_authenticated %}
+                        <a class="btn btn-primary" href="{% url 'company create' %}">Add</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
