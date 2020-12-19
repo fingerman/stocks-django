@@ -2,29 +2,31 @@
 {% block content %}
 
     {% if user.is_authenticated %}
-        <div class="container">
-            <div class="row">
-                <div class="col-md-10">
-                    <h1>Product edit</h1>
+        {% if user == product.user %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10">
+                        <h1>Product edit</h1>
+                    </div>
                 </div>
+
+
+                <form method="post" enctype="multipart/form-data">
+                    <table class="table table-hover" align="center">
+                        {% csrf_token %}
+                        {{ form.as_table }}
+                    </table>
+                    <div class="col-md-offset-5 col-md-1">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+
+                    <div class="col-md-1">
+                        <a class="btn btn-default" href="{% url 'product list' %}" role="button">Back to the list</a>
+                    </div>
+                </form>
             </div>
-
-
-            <form method="post">
-                <table class="table table-hover" align="center">
-                    {% csrf_token %}
-                    {{ form.as_table }}
-                </table>
-                <div class="col-md-offset-5 col-md-1">
-                    <button type="submit" class="btn btn-primary">Update</button>
-                </div>
-
-                <div class="col-md-1">
-                    <a class="btn btn-default" href="{% url 'product list' %}" role="button">Back to the list</a>
-                </div>
-            </form>
-        </div>
-    {% else %}
-        <div class="text-center">permission denied</div>
+        {% else %}
+            <div class="text-center">permission denied</div>
+        {% endif %}}
     {% endif %}}
 {% endblock %}

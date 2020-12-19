@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'stocks.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'db_stock',
+        'NAME': 'db_stocks',
         'USER': 'user1',
         'PASSWORD': '12345',
         'HOST': '127.0.0.1',

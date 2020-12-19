@@ -1,70 +1,71 @@
 {% extends 'base.html' %}
 {% block content %}
-{% if user.is_authenticated %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-10" >
-            <h1>Company</h1>
-        </div>
-
-            <div class="col-md-1">
-                <div class="col-md-offset-3">
-                    <form method="POST" action="{% url 'company delete' company.pk %}">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
+    {% if user.is_authenticated %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10">
+                    <h1>Company</h1>
                 </div>
+                {% if user == company.user %}
+                    <div class="col-md-1">
+                        <div class="col-md-offset-3">
+                            <form method="POST" action="{% url 'company delete' company.pk %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
             </div>
+            <table class="table table-hover" align="center" style="max-width: 700px;">
+                <tbody>
+                <col width="250">
+                <tr>
+                    <th>Id</th>
+                    <td>{{ company.id }}</td>
+                </tr>
+                <tr>
+                    <th>Company Name</th>
+                    <td>{{ company.company }}</td>
+                </tr>
+                <tr>
+                    <th>Segment</th>
+                    <td>{{ company.segment }}</td>
+                </tr>
+                <tr>
+                    <th>Address</th>
+                    <td>{{ company.address }}</td>
+                </tr>
+                <tr>
+                    <th>Country</th>
+                    <td>{{ company.country }}</td>
+                </tr>
+                <tr>
+                    <th>Company Email</th>
+                    <td>{{ company.email }}</td>
+                </tr>
 
-    </div>
-    <table class="table table-hover" align="center" style="max-width: 700px;">
-        <tbody>
-        <col width="250">
-        <tr>
-            <th>Id</th>
-            <td>{{ company.id }}</td>
-        </tr>
-        <tr>
-            <th>Company Name</th>
-            <td>{{ company.company }}</td>
-        </tr>
-        <tr>
-            <th>Segment</th>
-            <td>{{ company.segment }}</td>
-        </tr>
-        <tr>
-            <th>Address</th>
-            <td>{{ company.address }}</td>
-        </tr>
-        <tr>
-            <th>Country</th>
-            <td>{{ company.country }}</td>
-        </tr>
-        <tr>
-            <th>Company Email</th>
-            <td>{{ company.email }}</td>
-        </tr>
-
-        <tr>
-            <th>already contacted ?</th>
-            <td>{{ company.contacted }}</td>
-        </tr>
-        <tr>
-            <th>Description</th>
-            <td>{{ company.description }}</td>
-        </tr>
-        </tbody>
-    </table>
-
-        <div class="col-md-2 col-md-offset-4">
-            <a class="btn btn-default" href="{% url 'index' %}" role="button">Back to the list</a>
-        </div>
-        <div class="col-md-6">
-            <a class="btn btn-primary" href="{% url 'company edit' company.pk %}">Edit</a>
-        </div>
+                <tr>
+                    <th>already contacted ?</th>
+                    <td>{{ company.contacted }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ company.description }}</td>
+                </tr>
+                </tbody>
+            </table>
+            {% if user == company.user %}
+                <div class="col-md-2 col-md-offset-4">
+                    <a class="btn btn-default" href="{% url 'index' %}" role="button">Back to the list</a>
+                </div>
+                <div class="col-md-6">
+                    <a class="btn btn-primary" href="{% url 'company edit' company.pk %}">Edit</a>
+                </div>
+            {% endif %}
         </div>
     {% else %}
-    <div class="text-center">permission denied </div>
+        <div class="text-center">permission denied</div>
     {% endif %}
 
 {% endblock %}
