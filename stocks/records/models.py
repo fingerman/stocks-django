@@ -36,3 +36,6 @@ class Supplier(models.Model):
     email = models.EmailField(null=True)
     products = models.ManyToManyField(Product)
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.name}'

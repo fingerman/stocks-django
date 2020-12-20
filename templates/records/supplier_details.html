@@ -37,7 +37,9 @@
                 </tr>
                 <tr>
                     <th>Products</th>
-                    <td>{{ supplier.products }}</td>
+                    {% for product in supplier.products.all %}
+                    <td>{{ product }}; </td>
+                    {% endfor %}
                 </tr>
                 </tbody>
             </table>
